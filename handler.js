@@ -92,7 +92,7 @@ const editBookByHandler = (request, h) => {
         }).code(400);
     }
 
-    if (!idFound === -1) {
+    if (idFound === -1) {
         return h.response({
             "status": "fail",
             "message": "Gagal memperbarui buku. Id tidak ditemukan",
