@@ -76,7 +76,7 @@ const editBookByHandler = (request, h) => {
         name, year, author, summary, publisher, pageCount, readPage, reading
     } = request.payload;
 
-    const idFound = books.find((b) => b.id === bookId);
+    const idFound = books.findIndex((b) => b.id === bookId);
 
     if(!name) {
         return h.response({
@@ -99,16 +99,16 @@ const editBookByHandler = (request, h) => {
         }).code(404);
     }
 
-idFound.name = name;
-idFound.year = year;
-idFound.name = author;
-idFound.summary = summary;
-idFound.publisher = publisher;
-idFound.pageCount = pageCount;
-idFound.readPage = readPage;
-idFound.reading = reading;
-idFound.updateAt = new Date().toISOString();
-idFound.finished = pageCount === readPage;
+books[idFound].name = name;
+books[idFound].year = year;
+books[idFound].name = author;
+books[idFound].summary = summary;
+books[idFound].publisher = publisher;
+books[idFound].pageCount = pageCount;
+books[idFound].readPage = readPage;
+books[idFound].reading = reading;
+books[idFound].updateAt = new Date().toISOString();
+books[idFound].finished = pageCount === readPage;
 
 return h.response({
     "status": "success",
