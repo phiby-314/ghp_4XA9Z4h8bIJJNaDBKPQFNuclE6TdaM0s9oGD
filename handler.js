@@ -38,6 +38,21 @@ const addBookHandler = (request, h) => {
     }).code(201);
 };
 
+const getAllBooksHandler = (request, h) => {
+        const allBooks = books.map((book) => ({
+            id: book.id,
+            name: book.name,
+            publisher: book.publisher,
+        }));
+
+        return h.response({
+            "status": "success",
+            data: {
+                books: allBooks,
+            },
+        }).code(200);
+    };
+
 const getBookByHandler = (request, h) => {
     const { bookId } = request.params;
     const book = books.find((b) => b.id === bookId);
