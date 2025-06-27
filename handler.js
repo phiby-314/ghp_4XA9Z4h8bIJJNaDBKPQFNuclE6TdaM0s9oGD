@@ -118,7 +118,7 @@ return h.response({
 
 const deleteBookByHandler = (request, h) => {
     const { bookId } = request.params;
-    const idFound = books.find((b) => b.id === bookId);
+    const idFound = books.findIndex((b) => b.id === bookId);
 
     if (idFound) {
         return h.response({
@@ -127,8 +127,7 @@ const deleteBookByHandler = (request, h) => {
         }).code(404);
     }
 
-    const index = books.indexOf(idFound);
-    books.splice(index, 1);
+    books.splice(idFound, 1);
 
     return h.response({
         "status": "success",
