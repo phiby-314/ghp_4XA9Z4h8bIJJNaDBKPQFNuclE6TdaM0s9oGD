@@ -57,7 +57,7 @@ const getBookByHandler = (request, h) => {
     const { bookId } = request.params;
     const book = books.find((b) => b.id === bookId);
 
-    if (!bookFound) {
+    if (!book) {
         return h.response({
             "status": "fail",
             "message": "Buku tidak ditemukan",
@@ -66,7 +66,7 @@ const getBookByHandler = (request, h) => {
 
     return {
         "status": "success",
-        "data": { bookFound },
+        "data": { book },
     };
 };
 
