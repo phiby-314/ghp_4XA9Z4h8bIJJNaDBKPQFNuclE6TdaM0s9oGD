@@ -99,16 +99,18 @@ const editBookByHandler = (request, h) => {
         }).code(404);
     }
 
-books[idFound].name = name;
-books[idFound].year = year;
-books[idFound].name = author;
-books[idFound].summary = summary;
-books[idFound].publisher = publisher;
-books[idFound].pageCount = pageCount;
-books[idFound].readPage = readPage;
-books[idFound].reading = reading;
-books[idFound].updateAt = new Date().toISOString();
-books[idFound].finished = pageCount === readPage;
+books[idFound] = {
+    ...books[idFound],
+    name,
+    year,
+    author,
+    summary,
+    publisher,
+    pageCount,
+    readPage,
+    reading,
+    updatedAt,
+  };
 
 return h.response({
     "status": "success",
